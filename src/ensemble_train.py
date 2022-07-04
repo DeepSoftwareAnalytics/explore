@@ -10,6 +10,7 @@ from transformers import (WEIGHTS_NAME, AdamW,
                           RobertaConfig,
                           #   RobertaForSequenceClassification,
                           RobertaTokenizer)
+# update
 from transformers.models.bert.modeling_bert import BertOnlyMLMHead
 from modeling_utils import RobertaForSequenceClassificationNew
 from utils import processors
