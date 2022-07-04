@@ -11,7 +11,7 @@ from transformers import (WEIGHTS_NAME, AdamW,
                           #   RobertaForSequenceClassification,
                           RobertaTokenizer)
 # update
-from transformers.models.bert.modeling_bert import BertOnlyMLMHead
+from transformers.models.bert.modeling_bert import BertPreTrainedModel
 from modeling_utils import RobertaForSequenceClassificationNew
 from utils import processors
 from run_classifier import evaluate, train, load_and_cache_examples, set_seed
