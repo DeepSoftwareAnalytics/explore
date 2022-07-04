@@ -21,8 +21,13 @@ import logging
 import os
 import random
 from torch.nn import CrossEntropyLoss, MSELoss
+from transformers import RobertaTokenizer
 
-
+from transformers.models.roberta.modeling_roberta import (
+    RobertaClassificationHead,
+    RobertaConfig,
+    RobertaModel,
+)
 import numpy as np
 import torch
 from torch.utils.data import (DataLoader, RandomSampler, SequentialSampler,
