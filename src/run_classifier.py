@@ -227,7 +227,7 @@ def train(args, train_dataset, model, tokenizer, optimizer):
                 else:
                     loss_fct = CrossEntropyLoss()
                     loss = loss_fct(
-                        logits.view(-1, num_labels), labels.view(-1))
+                        logits.reshape(-1, num_labels), labels.view(-1))
             # model outputs are always tuple in pytorch-transformers (see doc)
 
             if args.n_gpu > 1:
