@@ -219,16 +219,18 @@ def train(args, train_dataset, model, tokenizer, optimizer):
             logits = model(**inputs)
             labels = batch[3]
             num_labels = 2  # bad way
-            if labels is not None:
-                if num_labels == 1:
-                    #  We are doing regression
-                    loss_fct = MSELoss()
-                    loss = loss_fct(logits.view(-1), labels.view(-1))
-                else:
-                    loss_fct = CrossEntropyLoss()
-                    loss = loss_fct(
-                        logits.reshape(-1, num_labels), labels.view(-1))
-            # model outputs are always tuple in pytorch-transformers (see doc)
+
+            for i in range(0, len(logits)):
+                if labels is not None:
+                    if num_labels == 1:
+                        #  We are doing regression
+                        loss_fct = MSELoss()
+                        loss = loss_fct(logits[i].view(-1), labels.view(-1))
+                    else:
+                        loss_fct = CrossEntropyLoss()
+                        loss = loss_fct(
+                            logits[i].view(-1, num_labels), labels.view(-1))
+                # model outputs are always tuple in pytorch-transformers (see doc)
 
             if args.n_gpu > 1:
                 loss = loss.mean()  # mean() to average on multi-gpu parallel training
